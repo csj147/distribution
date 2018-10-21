@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.StationMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.Station">
+    <id column="StationID" jdbcType="VARCHAR" property="stationID" />
+    <result column="StationName" jdbcType="VARCHAR" property="stationName" />
+    <result column="ProvinceID" jdbcType="VARCHAR" property="provinceID" />
+    <result column="CityID" jdbcType="VARCHAR" property="cityID" />
+    <result column="AdminID" jdbcType="VARCHAR" property="adminID" />
+    <result column="StationPhone" jdbcType="VARCHAR" property="stationPhone" />
+    <result column="StationSite" jdbcType="VARCHAR" property="stationSite" />
+    <result column="StationNotes" jdbcType="VARCHAR" property="stationNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from station
+    where StationID = #{stationID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.Station">
+    insert into station (StationID, StationName, ProvinceID, 
+      CityID, AdminID, StationPhone, 
+      StationSite, StationNotes)
+    values (#{stationID,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, #{provinceID,jdbcType=VARCHAR}, 
+      #{cityID,jdbcType=VARCHAR}, #{adminID,jdbcType=VARCHAR}, #{stationPhone,jdbcType=VARCHAR}, 
+      #{stationSite,jdbcType=VARCHAR}, #{stationNotes,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.Station">
+    update station
+    set StationName = #{stationName,jdbcType=VARCHAR},
+      ProvinceID = #{provinceID,jdbcType=VARCHAR},
+      CityID = #{cityID,jdbcType=VARCHAR},
+      AdminID = #{adminID,jdbcType=VARCHAR},
+      StationPhone = #{stationPhone,jdbcType=VARCHAR},
+      StationSite = #{stationSite,jdbcType=VARCHAR},
+      StationNotes = #{stationNotes,jdbcType=VARCHAR}
+    where StationID = #{stationID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select StationID, StationName, ProvinceID, CityID, AdminID, StationPhone, StationSite, 
+    StationNotes
+    from station
+    where StationID = #{stationID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select StationID, StationName, ProvinceID, CityID, AdminID, StationPhone, StationSite, 
+    StationNotes
+    from station
+  </select>
+</mapper>

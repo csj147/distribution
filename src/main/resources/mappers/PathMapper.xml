@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.PathMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.Path">
+    <id column="PathID" jdbcType="VARCHAR" property="pathID" />
+    <result column="PathName" jdbcType="VARCHAR" property="pathName" />
+    <result column="OrderID" jdbcType="VARCHAR" property="orderID" />
+    <result column="ProvinceID" jdbcType="VARCHAR" property="provinceID" />
+    <result column="PathPrice" jdbcType="DECIMAL" property="pathPrice" />
+    <result column="PathNotes" jdbcType="VARCHAR" property="pathNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from path
+    where PathID = #{pathID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.Path">
+    insert into path (PathID, PathName, OrderID, 
+      ProvinceID, PathPrice, PathNotes
+      )
+    values (#{pathID,jdbcType=VARCHAR}, #{pathName,jdbcType=VARCHAR}, #{orderID,jdbcType=VARCHAR}, 
+      #{provinceID,jdbcType=VARCHAR}, #{pathPrice,jdbcType=DECIMAL}, #{pathNotes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.Path">
+    update path
+    set PathName = #{pathName,jdbcType=VARCHAR},
+      OrderID = #{orderID,jdbcType=VARCHAR},
+      ProvinceID = #{provinceID,jdbcType=VARCHAR},
+      PathPrice = #{pathPrice,jdbcType=DECIMAL},
+      PathNotes = #{pathNotes,jdbcType=VARCHAR}
+    where PathID = #{pathID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select PathID, PathName, OrderID, ProvinceID, PathPrice, PathNotes
+    from path
+    where PathID = #{pathID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select PathID, PathName, OrderID, ProvinceID, PathPrice, PathNotes
+    from path
+  </select>
+</mapper>

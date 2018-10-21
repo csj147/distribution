@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.CityMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.City">
+    <id column="CityID" jdbcType="VARCHAR" property="cityID" />
+    <result column="CityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="ProvinceID" jdbcType="VARCHAR" property="provinceID" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from city
+    where CityID = #{cityID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.City">
+    insert into city (CityID, CityName, ProvinceID
+      )
+    values (#{cityID,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{provinceID,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.City">
+    update city
+    set CityName = #{cityName,jdbcType=VARCHAR},
+      ProvinceID = #{provinceID,jdbcType=VARCHAR}
+    where CityID = #{cityID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select CityID, CityName, ProvinceID
+    from city
+    where CityID = #{cityID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select CityID, CityName, ProvinceID
+    from city
+  </select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.ClientMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.Client">
+    <id column="ClientID" jdbcType="VARCHAR" property="clientID" />
+    <result column="ClientName" jdbcType="VARCHAR" property="clientName" />
+    <result column="ClientSex" jdbcType="INTEGER" property="clientSex" />
+    <result column="UserID" jdbcType="VARCHAR" property="userID" />
+    <result column="ClientPwd" jdbcType="VARCHAR" property="clientPwd" />
+    <result column="ClientTEL" jdbcType="VARCHAR" property="clientTEL" />
+    <result column="ClientDate" jdbcType="TIMESTAMP" property="clientDate" />
+    <result column="ClientSite" jdbcType="VARCHAR" property="clientSite" />
+    <result column="ClientNotes" jdbcType="VARCHAR" property="clientNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from client
+    where ClientID = #{clientID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.Client">
+    insert into client (ClientID, ClientName, ClientSex, 
+      UserID, ClientPwd, ClientTEL, 
+      ClientDate, ClientSite, ClientNotes
+      )
+    values (#{clientID,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{clientSex,jdbcType=INTEGER}, 
+      #{userID,jdbcType=VARCHAR}, #{clientPwd,jdbcType=VARCHAR}, #{clientTEL,jdbcType=VARCHAR}, 
+      #{clientDate,jdbcType=TIMESTAMP}, #{clientSite,jdbcType=VARCHAR}, #{clientNotes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.Client">
+    update client
+    set ClientName = #{clientName,jdbcType=VARCHAR},
+      ClientSex = #{clientSex,jdbcType=INTEGER},
+      UserID = #{userID,jdbcType=VARCHAR},
+      ClientPwd = #{clientPwd,jdbcType=VARCHAR},
+      ClientTEL = #{clientTEL,jdbcType=VARCHAR},
+      ClientDate = #{clientDate,jdbcType=TIMESTAMP},
+      ClientSite = #{clientSite,jdbcType=VARCHAR},
+      ClientNotes = #{clientNotes,jdbcType=VARCHAR}
+    where ClientID = #{clientID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ClientID, ClientName, ClientSex, UserID, ClientPwd, ClientTEL, ClientDate, 
+    ClientSite, ClientNotes
+    from client
+    where ClientID = #{clientID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ClientID, ClientName, ClientSex, UserID, ClientPwd, ClientTEL, ClientDate, 
+    ClientSite, ClientNotes
+    from client
+  </select>
+</mapper>

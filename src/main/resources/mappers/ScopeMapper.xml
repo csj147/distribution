@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.ScopeMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.Scope">
+    <id column="ScopeID" jdbcType="VARCHAR" property="scopeID" />
+    <result column="ScopeName" jdbcType="VARCHAR" property="scopeName" />
+    <result column="ScopePrice" jdbcType="DECIMAL" property="scopePrice" />
+    <result column="StationID" jdbcType="VARCHAR" property="stationID" />
+    <result column="ScopeNotes" jdbcType="VARCHAR" property="scopeNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from scope
+    where ScopeID = #{scopeID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.Scope">
+    insert into scope (ScopeID, ScopeName, ScopePrice, 
+      StationID, ScopeNotes)
+    values (#{scopeID,jdbcType=VARCHAR}, #{scopeName,jdbcType=VARCHAR}, #{scopePrice,jdbcType=DECIMAL}, 
+      #{stationID,jdbcType=VARCHAR}, #{scopeNotes,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.Scope">
+    update scope
+    set ScopeName = #{scopeName,jdbcType=VARCHAR},
+      ScopePrice = #{scopePrice,jdbcType=DECIMAL},
+      StationID = #{stationID,jdbcType=VARCHAR},
+      ScopeNotes = #{scopeNotes,jdbcType=VARCHAR}
+    where ScopeID = #{scopeID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ScopeID, ScopeName, ScopePrice, StationID, ScopeNotes
+    from scope
+    where ScopeID = #{scopeID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ScopeID, ScopeName, ScopePrice, StationID, ScopeNotes
+    from scope
+  </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.ConnectMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.Connect">
+    <id column="ConnectID" jdbcType="VARCHAR" property="connectID" />
+    <result column="ConnectStart" jdbcType="VARCHAR" property="connectStart" />
+    <result column="ConnectMiddle" jdbcType="VARCHAR" property="connectMiddle" />
+    <result column="ConnectTerminus" jdbcType="VARCHAR" property="connectTerminus" />
+    <result column="ConnectType" jdbcType="INTEGER" property="connectType" />
+    <result column="ConnectDate" jdbcType="TIMESTAMP" property="connectDate" />
+    <result column="ConnectNotes" jdbcType="VARCHAR" property="connectNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from connect
+    where ConnectID = #{connectID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.Connect">
+    insert into connect (ConnectID, ConnectStart, ConnectMiddle, 
+      ConnectTerminus, ConnectType, ConnectDate, 
+      ConnectNotes)
+    values (#{connectID,jdbcType=VARCHAR}, #{connectStart,jdbcType=VARCHAR}, #{connectMiddle,jdbcType=VARCHAR}, 
+      #{connectTerminus,jdbcType=VARCHAR}, #{connectType,jdbcType=INTEGER}, #{connectDate,jdbcType=TIMESTAMP}, 
+      #{connectNotes,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.Connect">
+    update connect
+    set ConnectStart = #{connectStart,jdbcType=VARCHAR},
+      ConnectMiddle = #{connectMiddle,jdbcType=VARCHAR},
+      ConnectTerminus = #{connectTerminus,jdbcType=VARCHAR},
+      ConnectType = #{connectType,jdbcType=INTEGER},
+      ConnectDate = #{connectDate,jdbcType=TIMESTAMP},
+      ConnectNotes = #{connectNotes,jdbcType=VARCHAR}
+    where ConnectID = #{connectID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ConnectID, ConnectStart, ConnectMiddle, ConnectTerminus, ConnectType, ConnectDate, 
+    ConnectNotes
+    from connect
+    where ConnectID = #{connectID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ConnectID, ConnectStart, ConnectMiddle, ConnectTerminus, ConnectType, ConnectDate, 
+    ConnectNotes
+    from connect
+  </select>
+</mapper>

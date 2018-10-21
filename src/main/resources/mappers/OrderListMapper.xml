@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.OrderListMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.entity.OrderList">
+    <id column="OrderID" jdbcType="VARCHAR" property="orderID" />
+    <result column="OrderType" jdbcType="INTEGER" property="orderType" />
+    <result column="OrderNumber" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="OrderName" jdbcType="VARCHAR" property="orderName" />
+    <result column="OrderKG" jdbcType="INTEGER" property="orderKG" />
+    <result column="OrderMail" jdbcType="VARCHAR" property="orderMail" />
+    <result column="OrderMailSite" jdbcType="VARCHAR" property="orderMailSite" />
+    <result column="OrderProfile" jdbcType="VARCHAR" property="orderProfile" />
+    <result column="OrderStatus" jdbcType="INTEGER" property="orderStatus" />
+    <result column="OrderPostPhone" jdbcType="VARCHAR" property="orderPostPhone" />
+    <result column="OrderCNEE" jdbcType="VARCHAR" property="orderCNEE" />
+    <result column="OrderPhone" jdbcType="VARCHAR" property="orderPhone" />
+    <result column="OrderStart" jdbcType="VARCHAR" property="orderStart" />
+    <result column="OrderMiddle" jdbcType="VARCHAR" property="orderMiddle" />
+    <result column="OrderTerminus" jdbcType="VARCHAR" property="orderTerminus" />
+    <result column="OrderShip" jdbcType="DECIMAL" property="orderShip" />
+    <result column="OrderDC" jdbcType="DECIMAL" property="orderDC" />
+    <result column="OrderMove" jdbcType="DECIMAL" property="orderMove" />
+    <result column="OrderSum" jdbcType="VARCHAR" property="orderSum" />
+    <result column="OrderCar" jdbcType="VARCHAR" property="orderCar" />
+    <result column="OrderNotes" jdbcType="VARCHAR" property="orderNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_list
+    where OrderID = #{orderID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.entity.OrderList">
+    insert into order_list (OrderID, OrderType, OrderNumber, 
+      OrderName, OrderKG, OrderMail, 
+      OrderMailSite, OrderProfile, OrderStatus, 
+      OrderPostPhone, OrderCNEE, OrderPhone, 
+      OrderStart, OrderMiddle, OrderTerminus, 
+      OrderShip, OrderDC, OrderMove, 
+      OrderSum, OrderCar, OrderNotes
+      )
+    values (#{orderID,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, 
+      #{orderName,jdbcType=VARCHAR}, #{orderKG,jdbcType=INTEGER}, #{orderMail,jdbcType=VARCHAR}, 
+      #{orderMailSite,jdbcType=VARCHAR}, #{orderProfile,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
+      #{orderPostPhone,jdbcType=VARCHAR}, #{orderCNEE,jdbcType=VARCHAR}, #{orderPhone,jdbcType=VARCHAR}, 
+      #{orderStart,jdbcType=VARCHAR}, #{orderMiddle,jdbcType=VARCHAR}, #{orderTerminus,jdbcType=VARCHAR}, 
+      #{orderShip,jdbcType=DECIMAL}, #{orderDC,jdbcType=DECIMAL}, #{orderMove,jdbcType=DECIMAL}, 
+      #{orderSum,jdbcType=VARCHAR}, #{orderCar,jdbcType=VARCHAR}, #{orderNotes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.entity.OrderList">
+    update order_list
+    set OrderType = #{orderType,jdbcType=INTEGER},
+      OrderNumber = #{orderNumber,jdbcType=VARCHAR},
+      OrderName = #{orderName,jdbcType=VARCHAR},
+      OrderKG = #{orderKG,jdbcType=INTEGER},
+      OrderMail = #{orderMail,jdbcType=VARCHAR},
+      OrderMailSite = #{orderMailSite,jdbcType=VARCHAR},
+      OrderProfile = #{orderProfile,jdbcType=VARCHAR},
+      OrderStatus = #{orderStatus,jdbcType=INTEGER},
+      OrderPostPhone = #{orderPostPhone,jdbcType=VARCHAR},
+      OrderCNEE = #{orderCNEE,jdbcType=VARCHAR},
+      OrderPhone = #{orderPhone,jdbcType=VARCHAR},
+      OrderStart = #{orderStart,jdbcType=VARCHAR},
+      OrderMiddle = #{orderMiddle,jdbcType=VARCHAR},
+      OrderTerminus = #{orderTerminus,jdbcType=VARCHAR},
+      OrderShip = #{orderShip,jdbcType=DECIMAL},
+      OrderDC = #{orderDC,jdbcType=DECIMAL},
+      OrderMove = #{orderMove,jdbcType=DECIMAL},
+      OrderSum = #{orderSum,jdbcType=VARCHAR},
+      OrderCar = #{orderCar,jdbcType=VARCHAR},
+      OrderNotes = #{orderNotes,jdbcType=VARCHAR}
+    where OrderID = #{orderID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select OrderID, OrderType, OrderNumber, OrderName, OrderKG, OrderMail, OrderMailSite, 
+    OrderProfile, OrderStatus, OrderPostPhone, OrderCNEE, OrderPhone, OrderStart, OrderMiddle, 
+    OrderTerminus, OrderShip, OrderDC, OrderMove, OrderSum, OrderCar, OrderNotes
+    from order_list
+    where OrderID = #{orderID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select OrderID, OrderType, OrderNumber, OrderName, OrderKG, OrderMail, OrderMailSite, 
+    OrderProfile, OrderStatus, OrderPostPhone, OrderCNEE, OrderPhone, OrderStart, OrderMiddle, 
+    OrderTerminus, OrderShip, OrderDC, OrderMove, OrderSum, OrderCar, OrderNotes
+    from order_list
+  </select>
+</mapper>
